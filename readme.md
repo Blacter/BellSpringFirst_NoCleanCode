@@ -2,7 +2,7 @@
 
 Запросы:
 
-GET "/get_login_and_status"
+GET "/api"
 Возвращает JSON:
 ```
 {
@@ -11,7 +11,7 @@ GET "/get_login_and_status"
 }
 ```
 
-POST "/post_login_password_date"
+POST "/api"
 Принимает JSON:
 ```
 {
