@@ -29,30 +29,24 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path="/", produces="application/json")
-@CrossOrigin(origins="*")
 public class User {
     @GetMapping("/api")
     public String api_get(){
-        System.out.print("GET /api" + " ");
-
-        LoginStatusBean loginStatusBean = new LoginStatusBean();
-        loginStatusBean.setLogin("Login1");
-        loginStatusBean.setStatus("ok");
-
-        ResponseDelay.doRandomDelay();
-        return "{\"login\": \"Login1\", \"status\": \"ok\" }";
+        String prefix = "GET /api" + " ";
+        ResponseDelay.doRandomDelay(prefix);
+        return "{\"login\": \"Login1\", \"status\": \"okk\" }";
     }
 
     @PostMapping("/api")
-    public LoginPasswordDateData api_post(@Valid @RequestBody LoginPasswordData loginPasswordData){
-        System.out.print("POST /api" + " ");
-
-        ResponseDelay.doRandomDelay();
-        return LoginPasswordDateData.fromLoginPasswordData(loginPasswordData);
+    public LoginPasswordDateBean api_post(@Valid @RequestBody LoginPasswordBean loginPasswordData){
+        String prefix = "POST /api" + " ";
+        ResponseDelay.doRandomDelay(prefix);
+        return new LoginPasswordDateBean(loginPasswordData.getLogin(), loginPasswordData.getPassword());
     }
 }
 
-class LoginPasswordData {
+@Data
+class LoginPasswordBean {
     @NotNull
     @Length(min = 5, max = 128)
     public String login;
@@ -63,19 +57,15 @@ class LoginPasswordData {
 }
 
 @Data
-class LoginPasswordDateData {
+class LoginPasswordDateBean {
     private String login;
     private String password;
     private String date;
 
-    private LoginPasswordDateData(String login, String password){
+    public LoginPasswordDateBean(String login, String password){
         this.login = login;
         this.password = password;
         this.date = getCurrentDateTime();
-    }
-
-    public static LoginPasswordDateData fromLoginPasswordData(LoginPasswordData loginPasswordData){
-        return new LoginPasswordDateData(loginPasswordData.login, loginPasswordData.password);
     }
 
     private String getCurrentDateTime(){
@@ -90,7 +80,7 @@ class LoginStatusBean {
 }
 
 class ResponseDelay {
-    public static void doRandomDelay() {
+    public static void doRandomDelay(String prefix) {
         long formMilliseconds = 1000;
         long toMilliseconds = 2000;
         Random random = new Random();
@@ -100,7 +90,7 @@ class ResponseDelay {
         } catch (InterruptedException e){
             e.printStackTrace();
         }
-        System.out.printf("DELAY_TIME: %d milliseconds\n", delayTime);
+        System.out.printf(prefix + "DELAY_TIME: %d milliseconds\n", delayTime);
     }
 }
 

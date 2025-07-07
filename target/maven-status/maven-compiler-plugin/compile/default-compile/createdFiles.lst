@@ -1,0 +1,9 @@
+com\example\demoTask2\controller\ErrorHandlingControllerAdvice.class
+com\example\demoTask2\controller\Violation.class
+com\example\demoTask2\controller\ResponseDelay.class
+com\example\demoTask2\DemoTask2Application.class
+com\example\demoTask2\controller\LoginStatusBean.class
+com\example\demoTask2\controller\LoginPasswordBean.class
+com\example\demoTask2\controller\ValidationErrorResponse.class
+com\example\demoTask2\controller\User.class
+com\example\demoTask2\controller\LoginPasswordDateBean.class
