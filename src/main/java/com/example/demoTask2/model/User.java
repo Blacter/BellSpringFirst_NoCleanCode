@@ -22,6 +22,6 @@ public class User {
     public User(String login, String password){
         this.login = login;
         this.password = password;
-        this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+//        this.date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 }

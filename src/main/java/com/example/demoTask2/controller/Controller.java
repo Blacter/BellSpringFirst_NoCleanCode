@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
@@ -34,6 +36,7 @@ public class Controller {
     @PostMapping(value = "/api", produces="application/json")
     public User api_post(@Valid @RequestBody User loginPasswordData){
         doRandomDelay();
+        loginPasswordData.setDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime()));
         return loginPasswordData;
     }
 
